@@ -24,20 +24,20 @@ let randColor = arr => {
     return arr;
 } ;
 
-log(randColor(colors));
 
 let colorArray = randColor(colors);
+log(colorArray);
 
-const buttons = arr => {
+const buttons = () => {
     let myButtons = document.getElementById('myButtons');
     let tileGroup = document.createElement('ul');
     tileGroup.id = 'tileGroup';
-    tileGroup.class = 'tileGroup';
+    tileGroup.className = 'tileGroup';
     for(i=0; i < 30; i++){
         list = document.createElement('li');
-        list.id = 'tile';
-        list.class = 'tile';
-        $(list).css('background-color', [arr[i]]);
+        list.id = i;
+        list.className = 'tile';
+        $(list).css('background-color', 'black');
         list.innerHTML = i;
         myButtons.appendChild(tileGroup);
         tileGroup.appendChild(list);
@@ -52,14 +52,42 @@ buttons(colorArray);
 //     });
 // });
 
-const turn = () =>{
+const turn = (arr) =>{
     let counter = 0;
+    let id1 = 0;
+    let id2 = 0;
+    let color1 = '';
+    let color2 = '';
+    let tile1 = '';
+    let tile2 = '';
+
     $('.myButtons ul li').click(function() {
-        $(this).css('background-color', 'black');
+        if(counter == 0){
+            id1 = $(this).attr('id');
+            color1 = arr[id1];
+            $(this).css('background-color', color1);
+            tile1 = $(this);
+            counter++
+        }else{
+            id2 = $(this).attr('id');
+            color2 = arr[id2];
+            $(this).css('background-color', color1);
+            tile2 = $(this);
+            if(color1 == color2 && id1 != id2){
+                tile1.hide();
+                tile2.hide();
+            }else{
+                tile1.css('background-color', 'black');
+                tile2.css('background-color', 'black');
+            }
+            counter = 0;
+        }
+             
+        
     });
 
 }
-turn();
+turn(colorArray);
 
 
 
