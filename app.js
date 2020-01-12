@@ -1,20 +1,18 @@
 log = console.log;
 let colors = ['white', 'blue', 'green', 'red', 'purple', 'pink', 'yellow', 'orange', 'grey', 'tomato', 'brown', 'turquoise','wheat','cornflowerblue','olive','white', 'blue', 'green', 'red', 'purple', 'pink', 'yellow', 'orange', 'grey', 'tomato', 'brown', 'turquoise','wheat','cornflowerblue','olive'];
 
-// take an array of 15 colors and create a new random array of 15 pairs of colors in a random order
+//return a random number between 0 - 29
 let randNum = () => {
     let rand = Math.abs(Math.round(Math.floor(30) * Math.random()-1));
     return rand;
 }
-
-
-
-
+//select a random element in an array and move it to a different location in the same array
 const change = (arr, x, y) => {
     let arr3 = arr.splice(y, 0, arr.splice(x, 1)[0]);
     return arr3;
   };
 
+  // take an array of 30 colors andreorder the array to create a new random order
 let randColor = arr => {
     for(i=0;i<30;i++){
         let rand = randNum();
@@ -24,10 +22,11 @@ let randColor = arr => {
     return arr;
 } ;
 
-
+//call the randColor function and store the array in colorArray
 let colorArray = randColor(colors);
 log(colorArray);
 
+//display 30 buttons on the page. All of the tiles are black at this stage in the game. 
 const buttons = () => {
     let myButtons = document.getElementById('myButtons');
     let tileGroup = document.createElement('ul');
@@ -38,21 +37,16 @@ const buttons = () => {
         list.id = i;
         list.className = 'tile';
         $(list).css('background-color', 'black');
-        list.innerHTML = i;
         myButtons.appendChild(tileGroup);
         tileGroup.appendChild(list);
     };
 };
 
-buttons(colorArray);
+//call the buttons function
+buttons();
 
-// $(document).ready(function() {
-//     $('game').hover(function() {
-//         $(this).hide()
-//     });
-// });
-
-const turn = (arr) =>{
+//create a function for gameplay
+const play = (arr) =>{
     let counter = 0;
     let id1 = 0;
     let id2 = 0;
@@ -92,7 +86,9 @@ const turn = (arr) =>{
     });
 
 }
-turn(colorArray);
+
+//call the play function
+play(colorArray);
 
 
 
