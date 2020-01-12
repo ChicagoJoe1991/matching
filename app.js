@@ -1,5 +1,5 @@
 log = console.log;
-let colors = ['black', 'blue', 'green', 'red', 'purple', 'pink', 'yellow', 'orange', 'grey', 'tomato', 'brown', 'turquoise','wheat','samoln','olive','black', 'blue', 'green', 'red', 'purple', 'pink', 'yellow', 'orange', 'grey', 'tomato', 'brown', 'turquoise','wheat','samoln','olive'];
+let colors = ['white', 'blue', 'green', 'red', 'purple', 'pink', 'yellow', 'orange', 'grey', 'tomato', 'brown', 'turquoise','wheat','cornflowerblue','olive','white', 'blue', 'green', 'red', 'purple', 'pink', 'yellow', 'orange', 'grey', 'tomato', 'brown', 'turquoise','wheat','cornflowerblue','olive'];
 
 // take an array of 15 colors and create a new random array of 15 pairs of colors in a random order
 let randNum = () => {
@@ -60,30 +60,35 @@ const turn = (arr) =>{
     let color2 = '';
     let tile1 = '';
     let tile2 = '';
+    let counter2 = 0;
 
     $('.myButtons ul li').click(function() {
+        if(counter == 2){
+                tile1.css('background-color', 'black');
+                tile2.css('background-color', 'black');
+                counter = 0;
+        }
         if(counter == 0){
             id1 = $(this).attr('id');
             color1 = arr[id1];
             $(this).css('background-color', color1);
             tile1 = $(this);
             counter++
-        }else{
+        }else if(counter == 1){
             id2 = $(this).attr('id');
             color2 = arr[id2];
-            $(this).css('background-color', color1);
+            $(this).css('background-color', color2);
             tile2 = $(this);
+            counter2++;
+            counter++
+            document.getElementById('score').innerHTML = counter2;
             if(color1 == color2 && id1 != id2){
                 tile1.hide();
                 tile2.hide();
-            }else{
-                tile1.css('background-color', 'black');
-                tile2.css('background-color', 'black');
+                counter = 0;
             }
-            counter = 0;
+            
         }
-             
-        
     });
 
 }
