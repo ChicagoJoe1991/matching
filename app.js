@@ -58,9 +58,9 @@ const play = (arr) =>{
 
     $('.myButtons ul li').click(function() {
         if(counter == 2){
-                tile1.css('background-color', 'black');
-                tile2.css('background-color', 'black');
-                counter = 0;
+            tile1.css('background-color', 'black');
+            tile2.css('background-color', 'black');
+            counter = 0;
         }
         if(counter == 0){
             id1 = $(this).attr('id');
@@ -80,12 +80,11 @@ const play = (arr) =>{
                 tile1.hide();
                 tile2.hide();
                 counter = 0;
-            }
-            
-        }
+            };
+        };
     });
 
-}
+};
 
 //call the play function
 play(colorArray);
